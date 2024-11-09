@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script src="{{url_for('static', filename='/js/main.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/main.css')}}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar__top">
+                <div class="navbar__top-right-link">
+                    <ul>
+                        <li><a href="">lorem</a></li>
+                        <li><a href="">lorem</a></li>
+                        <li><a href="">lorem</a></li>  
+                    </ul>
+                </div>
+                <div class="navbar__top-left-link">
+                    <ul>
+                        <li><a href="">lorem</a></li>  
+                        <li><a href="">lorem</a></li>  
+                        <li><a href="">lorem</a></li>  
+                    </ul>
+                </div>
+            </div>
+
+            <div class="navbar__bottom">
+                <div>
+                    <h1>Treas <span  class="h1-color">View</span></h1>
+                </div>
+                <div class="navbar__bottom-links">
+                    <ul>
+                        <li><a href="{{url_for('event_page')}}">Event</a></li>  
+                        <li><a href="">lorem</a></li>  
+                        <li><a href="">lorem</a></li>  
+                        <li><a href="">lorem</a></li>  
+                        <li><a href="">lorem</a></li>                          
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main">
+            <div class="main__top">
+                <span class="main__top-h1">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    <br> Aliquam assumenda consequatur alias!
+                </span>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus, vel!</p>
+            </div>
+
+            <div class="main__mid">
+                <form>
+                    <div class="main__mid-date">
+                        <div class="select">
+                            <input type="date" name="date" id="date" placeholder="10/26/2024 10:56 AM
+                            ">
+                        </div>
+                        <div class="select-button">
+                            <input type="submit" value="Find Event">
+                        </div>
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+        <div class="main__footer">
+            <div class="main__footer-style" >
+                <div class="main__footer-card">
+                    <img src="{{url_for('static', filename='/images/water-run-1280x853.png')}}" alt="event-img" width="306" height="228">
+
+                    <h2 >Lorem, ipsum.</h2>
+                    <p>Lorem ipsum dolor sit</p>
+                    <span class="read-more" data-target="moreInfo1" onclick="toggleReadMe(this) ">Read More🏹</span>  
+                </div>
+                <div class="container__more-info" >
+                    <span class="more-info" id="moreInfo1">
+                        <h1>Event Name</h1>
+                       <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus facere explicabo quisquam illo et, quod harum sequi nemo atque omnis, vel consequuntur? Temporibus iste rerum consequatur, excepturi dicta pariatur! Nam eos ipsa exercitationem quibusdam dolorum, obcaecati odio non expedita sit assumenda omnis nulla, aspernatur natus ad consequuntur dicta necessitatibus distinctio, tenetur possimus doloremque optio quisquam. Repellat quidem, in accusamus incidunt maxime ut odio unde amet illum quaerat a, ipsa eaque expedita molestias debitis accusantium quo eum dolorem facere ducimus consectetur cumque ipsum distinctio blanditiis. Consequatur sunt totam officia facilis commodi corrupti unde deserunt, laborum esse recusandae qui nesciunt architecto dolores.
+                       </p>
+                    </span>
+                </div>
+            </div>
+            <div class="main__footer-style" >
+                <div class="main__footer-card">
+                    <img src="{{url_for('static', filename='/images/water-run-1280x853.png')}}" alt="event-img" width="306" height="228">
+
+                    <h2 >Lorem, ipsum.</h2>
+                    <p>Lorem ipsum dolor sit</p>
+                    <span class="read-more" data-target="moreInfo2" onclick="toggleReadMe(this) ">Read More🏹</span>  
+                </div>
+                <div class="container__more-info" >
+                    <span class="more-info" id="moreInfo2">
+                        <h1>Event Name</h1>
+                       <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus facere explicabo quisquam illo et, quod harum sequi nemo atque omnis, vel consequuntur? Temporibus iste rerum consequatur, excepturi dicta pariatur! Nam eos ipsa exercitationem quibusdam dolorum, obcaecati odio non expedita sit assumenda omnis nulla, aspernatur natus ad consequuntur dicta necessitatibus distinctio, tenetur possimus doloremque optio quisquam. Repellat quidem, in accusamus incidunt maxime ut odio unde amet illum quaerat a, ipsa eaque expedita molestias debitis accusantium quo eum dolorem facere ducimus consectetur cumque ipsum distinctio blanditiis. Consequatur sunt totam officia facilis commodi corrupti unde deserunt, laborum esse recusandae qui nesciunt architecto dolores.
+                       </p>
+                    </span>
+                </div>
+            </div>
+            <div class="main__footer-style" >
+                <div class="main__footer-card">
+                    <img src="{{url_for('static', filename='/images/water-run-1280x853.png')}}" alt="event-img" width="306" height="228">
+
+                    <h2 >Lorem, ipsum.</h2>
+                    <p>Lorem ipsum dolor sit</p>
+                    <span class="read-more" data-target="moreInfo3" onclick="toggleReadMe(this) ">Read More🏹</span>  
+                </div>
+                <div class="container__more-info" >
+                    <span class="more-info" id="moreInfo3">
+                        <h1>Event Name</h1>
+                       <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus facere explicabo quisquam illo et, quod harum sequi nemo atque omnis, vel consequuntur? Temporibus iste rerum consequatur, excepturi dicta pariatur! Nam eos ipsa exercitationem quibusdam dolorum, obcaecati odio non expedita sit assumenda omnis nulla, aspernatur natus ad consequuntur dicta necessitatibus distinctio, tenetur possimus doloremque optio quisquam. Repellat quidem, in accusamus incidunt maxime ut odio unde amet illum quaerat a, ipsa eaque expedita molestias debitis accusantium quo eum dolorem facere ducimus consectetur cumque ipsum distinctio blanditiis. Consequatur sunt totam officia facilis commodi corrupti unde deserunt, laborum esse recusandae qui nesciunt architecto dolores.
+                       </p>
+                    </span>
+                </div>
+            </div>
+            <div class="main__footer-style" >
+                <div class="main__footer-card">
+                    <img src="{{url_for('static', filename='/images/water-run-1280x853.png')}}" alt="event-img" width="306" height="228">
+
+                    <h2 >Lorem, ipsum.</h2>
+                    <p>Lorem ipsum dolor sit</p>
+                    <span class="read-more" data-target="moreInfo4" onclick="toggleReadMe(this) ">Read More🏹</span>  
+                </div>
+                <div class="container__more-info" >
+                    <span class="more-info" id="moreInfo4">
+                        <h1>Event Name</h1>
+                       <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus facere explicabo quisquam illo et, quod harum sequi nemo atque omnis, vel consequuntur? Temporibus iste rerum consequatur, excepturi dicta pariatur! Nam eos ipsa exercitationem quibusdam dolorum, obcaecati odio non expedita sit assumenda omnis nulla, aspernatur natus ad consequuntur dicta necessitatibus distinctio, tenetur possimus doloremque optio quisquam. Repellat quidem, in accusamus incidunt maxime ut odio unde amet illum quaerat a, ipsa eaque expedita molestias debitis accusantium quo eum dolorem facere ducimus consectetur cumque ipsum distinctio blanditiis. Consequatur sunt totam officia facilis commodi corrupti unde deserunt, laborum esse recusandae qui nesciunt architecto dolores.
+                       </p>
+                    </span>
+                </div>
+            </div>
+            <div class="main__footer-style" >
+                <div class="main__footer-card">
+                    <img src="{{url_for('static', filename='/images/water-run-1280x853.png')}}" alt="event-img" width="306" height="228">
+
+                    <h2 >Lorem, ipsum.</h2>
+                    <p>Lorem ipsum dolor sit</p>
+                    <span class="read-more" data-target="moreInfo5" onclick="toggleReadMe(this) ">Read More🏹</span>  
+                </div>
+                <div class="container__more-info" >
+                    <span class="more-info" id="moreInfo5">
+                        <h1>Event Name</h1>
+                       <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus facere explicabo quisquam illo et, quod harum sequi nemo atque omnis, vel consequuntur? Temporibus iste rerum consequatur, excepturi dicta pariatur! Nam eos ipsa exercitationem quibusdam dolorum, obcaecati odio non expedita sit assumenda omnis nulla, aspernatur natus ad consequuntur dicta necessitatibus distinctio, tenetur possimus doloremque optio quisquam. Repellat quidem, in accusamus incidunt maxime ut odio unde amet illum quaerat a, ipsa eaque expedita molestias debitis accusantium quo eum dolorem facere ducimus consectetur cumque ipsum distinctio blanditiis. Consequatur sunt totam officia facilis commodi corrupti unde deserunt, laborum esse recusandae qui nesciunt architecto dolores.
+                       </p>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <footer>
+      {%include 'partials/footer.html'%}
+    </footer>
+
+</body>
+</html>

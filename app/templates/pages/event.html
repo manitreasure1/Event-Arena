@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>event</title>
+    <script src="{{url_for('static', filename='/js/main.js')}}"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/main.css')}}">
+</head>
+<body>
+    <header>
+        <nav class="event-navbar">
+            <h1>WELCOME TO THE EVENT PAGE</h1>
+            <ul>
+                <li><a href="">My Events</a></li>
+                <li><a href="{{url_for('add_event')}}">Create Event</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div id="eventPage">
+            {%include 'includes/event-card.html'%}
+        </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

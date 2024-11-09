@@ -1,0 +1,100 @@
+
+    <div class="event-card-include">
+        {%include 'includes/form.html'%}
+    </div>
+    <div class="event-container">
+        {%for element in event%}
+        <div class="event">
+            <div class="event-card">
+                <div class="event-card-details">
+                    <h1>{{element.name}}</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+                    <div class="card-info" >
+                        <a href="#" onclick="vistEvent()" >Visit</a>
+                        <a href="#"
+                        data-target="ShowMoreAboutEvent{{element.id}}"
+                        onclick="moreAboutEvent(this)">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="hero">
+            <div class="container" id="ShowMoreAboutEvent{{element.id}}">
+                <picture>
+                    <img src="{{url_for('static', filename='/images/image-1280x720.png')}}" alt="" width="128">
+                    <img src="{{url_for('static', filename='/images/searesort-1280x852.png')}}" alt="" width="128">
+                    <img src="{{url_for('static', filename='/images/art-1280x854.png')}}" alt="" width="128">
+                </picture>
+                <div class="event-title">
+                    <h1>{{element.name}}</h1>
+                </div>
+    
+                
+                <div class="activities">
+                    <div>
+                        <caption>Activities:&nbsp;</caption>
+                        <br>
+                        <ul>
+                            <li>pool</li>
+                            <li>Dance</li>
+                            <li>pool</li>
+                            <li>Dance</li>
+                            <li>pool</li>
+                            <li>Dance</li>
+                            <li>pool</li>
+                            <li>Dance</li>
+                        </ul>
+                    </div>
+                    <div class="event-qrcode">
+                        <img src="{{url_for('static', filename='/images/qrcode.png')}}" alt="qrcode">
+                    </div>
+                  
+                </div>
+                <aside class="description">
+                    <details>
+                        <summary>Description</summary>
+                        <p>{{element.description}}</p>
+                    </details>
+            
+                </aside>
+               
+                <div class="join-event">
+                    <button onclick="vistEvent()">Click to Join</button>
+                </div>
+              
+                <footer class="event-footer">
+                    <div class="sponsors">
+                        <ul>
+                                                      
+                            <li><a href=""><img src="{{url_for('static', filename='/images/sunset-basketball-1280x773.png')}}" alt="M-T-N">
+                                MTN Ghana</a></li>                            
+                            <li><a href=""><img src="{{url_for('static', filename='/images/sunset-basketball-1280x773.png')}}" alt="M-T-N">
+                                MTN Ghana</a></li>                            
+                            <li><a href=""><img src="{{url_for('static', filename='/images/sunset-basketball-1280x773.png')}}" alt="M-T-N">
+                                MTN Ghana</a></li>                            
+                            <li><a href=""><img src="{{url_for('static', filename='/images/sunset-basketball-1280x773.png')}}" alt="M-T-N">
+                                MTN Ghana</a></li>                            
+                            <li><a href=""><img src="{{url_for('static', filename='/images/sunset-basketball-1280x773.png')}}" alt="M-T-N">
+                                MTN Ghana</a></li>                            
+                                                      
+                        </ul>
+                    </div>
+                    <hr>
+                    <div class="more-user-info">
+                        <ul>
+                            <li><a href="">More Events</a></li>
+                            
+                            <li><a href="">About Us</a></li>
+                            
+                            <li><a href="">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+       
+        
+        

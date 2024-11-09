@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <style>
+        .side-nav{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgb(133, 136, 138);
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 100vh;
+            width: 230px;
+        }
+        .user-profile img{
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
+            vertical-align: middle;
+            
+        }
+        .user-profile{
+            background-color: aliceblue;
+            padding: 1rem;
+        }
+        .side-nav__main{
+            display: flex;
+            flex-direction: column;
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+        .side-nav:hover{
+            background-color: #36353576;
+        }
+        .side-nav__main ul{
+            list-style: none;
+            border: 1px solid #fff;
+                 
+        }
+        .side-nav__main li{
+            border: 1px solid;
+            
+        }
+        .side-nav__main a{
+            display: block;
+        }
+        
+        .side-nav__main a:any-link{
+            text-decoration: none;
+            color: #1e1e1e;
+            
+        }
+        .side-nav__main a:hover{
+            background-color: #696868;
+            color: #f9f4f4;
+        }
+        
+        .side-nav__footer{
+            background-color: aliceblue;
+            display: grid;
+            place-content: center;
+            padding: 1.5rem 0 ;
+            font-size: 1.3rem;
+        }
+        .side-nav__footer div:hover{
+            border-radius: 15px;
+            cursor: pointer;
+            color: #f6f3f3;
+            background-color: #4f4e4e8c;
+            box-shadow: 1px 1px 20px  10px rgb(255, 255, 255);
+        }
+        .material-symbols-outlined{
+            vertical-align: middle;
+            margin-right: 1rem;
+        }
+
+    </style>
+    <aside class="side-nav">
+        <!-- <div>
+            <span class="material-symbols-outlined">
+                arrow_back
+                </span>
+            <span class="material-symbols-outlined">
+                arrow_forward
+                </span>
+        </div> -->
+      
+        <header class="side-nav__header">
+            <div class="user-profile">
+                <img src="../../static/images/monk-1280-1280.png" alt="profile-pic" width="1280" height="1280">
+                <span>User Name</span>
+            </div>
+
+        </header>
+        <main class="side-nav__main">
+            <div class="side-nav__main-top">
+                <ul>
+                    <li> <a  onclick="addNewEvent()" href="{{url_for('add_event')}}"><span class="material-symbols-outlined">
+                        library_add
+                        </span>Add Event</a></li>
+                    <li><a href=""><span class="material-symbols-outlined">
+                        receipt_long
+                        </span>My Events</a></li>
+                    <li><a href="">
+                        <span class="material-symbols-outlined">
+                            live_tv
+                            </span>Ongoing</a></li>
+                    <li><a href="">
+                        <span class="material-symbols-outlined">
+                            notifications
+                            </span>Notification</a></li>
+                </ul>
+            </div>
+            
+            
+            <div class="side-nav__main-bottom">
+                <ul>
+                    <li><a href=""><span class="material-symbols-outlined">
+                        info
+                        </span>Info</a></li>
+                    <li><a href="">
+                        <span class="material-symbols-outlined">
+                            near_me
+                            </span>Location</a></li>
+                    <li><a href=""><span class="material-symbols-outlined">
+                        manage_accounts
+                        </span>About</a></li>
+                </ul>
+            </div>
+    
+        </main>
+        <footer class="side-nav__footer">
+            <div>
+                <span class="material-symbols-outlined">
+                    settings
+                    </span>
+                settings
+            </div>
+        </footer>
+    </aside>
+    
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+
+
+<div class="container2" id="AddNewEvent">
+  <div class="carousel">
+    <div class="add-image" id="AddImage"><span >+</span>Upload Image </div>
+  </div>
+
+<form method="post" id="formData">
+  <input type="text" class="event-heading" placeholder="Event Name" name="name">
+  <label for="start">Start:</label>
+  <input type="datetime-local" id="start" name="date">
+  <!-- <label for="end">End:</label>
+  <input type="datetime-local" id="end" name="end"> -->
+
+  <label for="location">Location</label>
+  <input type="text" id="location" name="location">
+
+  <label for="category">Category</label>
+  <select name="category" id="category" >
+    <optgroup label="Home">
+     
+        <option value="Tech Events">Tech Events</option>
+        <option value="Business Events">Business Events</option>
+        <option value="Workshops">Workshops</option>
+        <option value="Networking">Networking</option>   
+  </select>
+  
+  <label for="description">Description:</label>
+  <textarea id="description" name="description"></textarea>
+  <div class="buttons">
+    <button class="save" type="submit">Save</button>
+    <button type="reset" class="edit">Clear</button>
+  </div>
+</form>
+ 
+</div>
+
+
+

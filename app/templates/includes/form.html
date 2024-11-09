@@ -1,0 +1,51 @@
+
+    
+<div class="register-form" id="registerForm">
+    <span class="close" onclick="toggleForm()">&times;</span>
+    <form method="post" id="visitor">
+        <fieldset>
+            <legend>Visit Event</legend>
+            <div class="form-text">
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+            </div>
+            <div class="form-email">
+                <input type="email" name="email" placeholder="treasview@example.com" required>
+            </div>
+            <div class="form-tel">
+                <input type="tel" name="phone" placeholder="+233 XXX XXX XXX" required>
+            </div>
+            <div class="check">
+                <div class="message">
+                    <input type="radio" name="recieve" id="mail" value="mail">
+                    <label for="mail">Get mail</label>
+                </div>
+                <div class="message">
+                    <input type="radio" name="recieve" id="sms" value="sms">
+                    <label for="sms">Get SMS</label>
+                    
+                </div>
+                <div class="tnc">
+                    <div>
+                        <input type="checkbox" id="tnc" required>
+                        <label for="tnc" class="tnc-data-label" onclick="showTnC()">Terms and Conditions </label>
+                    </div>
+                    <div>
+                        <textarea name="tncContent" id="tncContent" cols="10" rows="10" class="tnc-data" readonly placeholder="tnc">
+                           Lorem ipsum dolor
+                        </textarea>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="form-button">
+                <input type="submit" value="Join">
+                <input type="reset" value="Clear">
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+   
+
+
