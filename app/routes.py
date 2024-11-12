@@ -1,6 +1,6 @@
 from app import app, db
-from app.database import Event
-from flask import  render_template, request, jsonify
+from app.models.event import Event
+from flask import  render_template, request, jsonify, make_response, session
 from  datetime import datetime
 
 
@@ -79,3 +79,16 @@ def add_event():
         return jsonify({'message':'Event added successfully!'}), 201
     return render_template('pages/create-event.html')
 
+
+@app.errorhandler(404)
+def not_found(error):
+    resp = make_response(render_template('errors/not_found.html'), 404)
+    resp.headers['X-Something'] = 'A value'
+    return resp
+
+
+@app.errorhandler(404)
+def invalid_input(error):
+    resp = make_response(render_template('errors/invalid-input.html'), 404)
+    resp.headers['X-Something'] = 'A value'
+    return resp

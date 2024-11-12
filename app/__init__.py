@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 from flask_cors import CORS
 
-from app import database
+from app import db
 
 app = Flask(__name__)
 
@@ -14,13 +14,13 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:/// event.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-database = SQLAlchemy(app)
-migrate = Migrate(app, database)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 with app.app_context():
-    from app import routes, database
-    database.create_all()
+    from app import routes
+    db.create_all()
 
 
 

@@ -17,6 +17,7 @@ class User(db.Model):
     bio: Mapped[Optional[str]] = mapped_column(String)  
     events: Mapped[List['Event']] = relationship('Event', back_populates='user')  
 
+
 class Event(db.Model):
     __tablename__ = 'event'
 
