@@ -1,27 +1,70 @@
 from app import app, db
-from app.models.event import Event
-from flask import  render_template, request, jsonify, make_response, session
+from app.database import Event, User, Visitor
+from flask import  render_template, request, jsonify, make_response, session, redirect, url_for, flash
 from  datetime import datetime
+from app.forms import SignUp, Login
+import asyncio
+
 
 
 @app.route('/', methods=['GET', 'POST'])
-def home_page():
+async def home_page():
     date = request.args.get('date')
+    event_date = Event.query.filter_by(date=date).all
     
     return render_template('pages/home.html')
 
 
 
 @app.route('/event', methods=['GET', 'POST'])
-def event_page():
+async def event_page():
     data = Event.query.all()
+    await asyncio.sleep(1)
     if request.method == 'POST':
         visitor = request.form.to_dict()
+        registerer = Visitor(
+            email=visitor.email,
+            phone=visitor.phone
+        )
+        db.session.add(registerer)
+        db.session.commit()
         
         return jsonify({"message":"You've registered succesfully!"}), 201            
     return render_template('pages/event.html', event=data)
 
-        
+
+@app.route('/signup', methods=['POST', 'GET'])
+def signUp():
+    form = SignUp()
+    if form.validate_on_submit():
+        user = User(
+            username=(form.first_name.data[:3]+form.last_name.data[:3]),
+            email=form.email.data,
+            password=form.password.data,          
+        )
+        db.session.add(user)
+        db.session.commit()
+        flash("Account created Successfully", category="success")
+        return redirect(url_for("event_page"))
+    else:
+        print(form.errors)
+    return render_template('includes/signUp.html', form=form)
+
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    form = Login()
+    if form.validate_on_submit():
+        email = User.query.filter_by("email")
+        password = form.password.data
+        try:
+            if any(email == form.email.data):
+                return jsonify({"message":"You've Logged in successfully"})
+        except Exception as e:     
+            return jsonify({"message": f"{e}"})
+        return redirect(url_for('event_page'))
+    return render_template('includes/login.html', form=form)
+
 
 
 @app.route('/event/<int:id>', methods=['PUT'])
@@ -83,12 +126,11 @@ def add_event():
 @app.errorhandler(404)
 def not_found(error):
     resp = make_response(render_template('errors/not_found.html'), 404)
-    resp.headers['X-Something'] = 'A value'
     return resp
 
 
 @app.errorhandler(404)
 def invalid_input(error):
     resp = make_response(render_template('errors/invalid-input.html'), 404)
-    resp.headers['X-Something'] = 'A value'
+    
     return resp

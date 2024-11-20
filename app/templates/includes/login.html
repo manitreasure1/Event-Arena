@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    
+    <style>
+        body{
+            background-image: url("../../static/images/monk-1280-1280.png");
+        }
+        .Login{
+            background-color: rgb(140, 210, 186);
+            width: 440px;
+            margin: 130px auto;
+            border-radius: 15px;
+        }
+        label{
+            display: block;
+            font-size: 1.3rem;
+        }
+        fieldset{
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding: 2rem;
+            border: none;
+        }
+        input{
+            font-size: 1.8rem;
+            background-color: transparent;
+            transform:skew(20deg);
+            box-shadow: 1px 1px 30px 1px;
+        }
+        input:focus{
+            background-color: aliceblue;
+        }
+        .button{
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        button{
+            font-size: 1.2rem;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        legend{
+            padding-top: 1rem;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+        button:hover{
+            transform:scale(1.2);
+            background-color: rgb(61, 62, 64);
+            color: antiquewhite;
+        }
+    </style>
+    
+    
+    
+    <div class="Login">
+        <form method="post">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <legend>Login</legend>
+                <div>
+                    <label for="email">{{form.email.label}}</label>
+                    {{form.email()}}
+                </div>
+                <div class="password">
+                    <label for="password">{{form.password.label}}</label>
+                    {{form.password()}}
+                </div>
+                <div class="button">
+                    {{form.submit()}}
+                </div>
+            </fieldset>
+        </form>
+    
+    </div>
+</body>
+</html>

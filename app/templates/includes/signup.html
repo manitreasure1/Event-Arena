@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<body>
+    
+    <style>
+        body{
+            
+            background-image: url("../../static/images/art-1280x854.png");
+            background-repeat: no-repeat;
+        }
+        .signup{
+            background:linear-gradient(180deg, #93e0f5, #555, #eee, #000);
+            max-width: 500px;
+            margin:  auto;
+            border-radius: 18px; 
+        }
+        .signup fieldset{
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding: 2.3rem  ;
+            border: none;
+        }
+        
+        .signup input{
+            background-color: transparent;
+            border-radius: 8px;
+        }
+        input::placeholder{
+            font-size: 25px;
+        }
+        input{
+            color: #dcd2d2;
+            font-size: 2rem;
+        }
+        
+        label{
+            font-size: 1.4rem;       
+            display: block;     
+            color: #414a4a;
+            
+        }
+        .button{
+            margin: auto;
+        }
+        button{
+           font-size: 1.5rem;
+           background-color: #dcd2d2;
+           border-radius: 5px;
+        }
+        button:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+        .form__text input{
+            margin-bottom: 1rem;
+        }
+        .form__password input{
+            margin-bottom: 1rem;
+            color: #414a4a;
+        }
+        legend{
+            font-size: 2rem;
+            font-weight: 900;
+            opacity: 0.8;
+        }
+    </style>
+        <div class="signup">
+            <form method="post">
+                {{form.hidden_tag()}}
+                <fieldset>
+                    <legend>Sign Up</legend>
+                    <div class="form__text">
+                        <label for="firstname">{{form.first_name.label}}</label>
+                        {{form.first_name(placeholder="first name...")}}
+                        
+                        <label for="lastname">{{form.last_name.label}}</label>
+                        {{form.last_name(placeholder="last name...")}}
+    
+                    </div>
+                    <div>
+                        <label for="email">{{form.email.label}}</label>
+                        {{form.email(placeholder="email...")}}
+                        
+                    </div>
+                    <div class="form__password">
+                        <label for="password">{{form.password.label}}</label>
+                        {{form.password(placeholder="password")}}
+                        <label for="confirm password">{{form.confirm_password.label}}</label>
+                        {{form.confirm_password(placeholder="Confirm Password")}}
+                        {%if form.confirm_password.errors%} 
+                            <p >{{form.confirm_password.errors}}</p>
+                        {%endif%}
+                    </div>
+                    <div class="button">
+                        {{form.submit()}}
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+</body>
+</html>
