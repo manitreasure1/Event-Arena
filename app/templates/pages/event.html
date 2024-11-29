@@ -10,7 +10,8 @@
 <body>
     <header>
         <nav class="event-navbar">
-            <h1>WELCOME TO THE EVENT PAGE</h1>
+            <h1> EVENT PAGE</h1>
+            
             <ul>
                 <li><a href="">My Events</a></li>
                 <li><a href="{{url_for('add_event')}}">Create Event</a></li>
@@ -18,6 +19,7 @@
         </nav>
     </header>
     <main>
+        
         <div id="eventPage">
             {%include 'includes/event-card.html'%}
         </div>

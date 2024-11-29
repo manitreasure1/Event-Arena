@@ -1,10 +1,10 @@
 from enum import Enum
-import qrcode
-from PIL import Image
-from dataclasses import dataclass
+# import qrcode
+# from PIL import Image
+# from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime
-import json
+
 
 class Role(Enum):
     user:str = "user"
@@ -22,31 +22,33 @@ def get_user_role(role:Role) -> str:
         case _:
             return None
         
-      
+# def create_initial_roles():
+#     initial_roles = {
+#         1: {'name': 'admin', 'description': 'Administrator with full access'},
+#         2: {'name': 'user', 'description': 'Regular user with limited access'},
+#         3: {'name': 'organization', 'description': 'Organization-level access'},
+#     }
+
+#     for role_id, role_data in initial_roles.items():
+#         role = Role(role_id=role_id, name=role_data['name'], description=role_data['description'])
+#         db.session.add(role)
+#     db.session.commit() 
+
+
+# @dataclass
+# class QRcodeGenerator:
+#     data:str
+#     image_pa:Optional[str]=None
+#     def generate_qrcode(self):
+#         qr_image = qrcode.make(self.data)
+#         return qr_image.save('qrcode.png')
 
 
 
-@dataclass
-class QRcodeGenerator:
-    data:str
-    image_pa:Optional[str]=None
-    def generate_qrcode(self):
-        qr_image = qrcode.make(self.data)
-        return qr_image.save('qrcode.png')
-
-@dataclass
-class PasswordHashAndCheck:
-    user_password:str
-    hashed_password:Optional[str]= None
-
-    def password_hash(self) -> tuple[str]:
-        return (self.user_password, self.hashed_password)
-
-        
-
-
-       
+def username(username:str) -> str:
+    return username.split('@')[0]
 
 
 
-        
+
+
