@@ -22,9 +22,13 @@
                     <ul>
                         <li><a href="">lorem</a></li>  
                         <li><a href="">lorem</a></li>  
-                        <li><a href="">lorem</a></li>  
-                        <li><a href="{{url_for('signUp')}}">Sing Up</a></li>  
+                        <li><a href="">lorem</a></li> 
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{url_for('logout_page')}}">Logout</a></li>
+                    {%else%}
+                        <li><a href="{{url_for('signUp')}}">Sign Up</a></li>  
                         <li><a href="{{url_for('login')}}">Login</a></li>  
+                    {%endif%}   
                     </ul>
                 </div>
             </div>
@@ -45,7 +49,8 @@
             </div>
         </nav>
     </header>
-
+    {%include 'includes/message.html'%}
+    {%include 'includes/err-msg.html'%}
     <main>
         <div class="main">
             <div class="main__top">

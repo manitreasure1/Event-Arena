@@ -1,7 +1,7 @@
 from enum import Enum
-# import qrcode
-# from PIL import Image
-# from dataclasses import dataclass
+import qrcode
+from PIL import Image
+from dataclasses import dataclass
 from typing import Optional
 from datetime import datetime
 
@@ -35,13 +35,13 @@ def get_user_role(role:Role) -> str:
 #     db.session.commit() 
 
 
-# @dataclass
-# class QRcodeGenerator:
-#     data:str
-#     image_pa:Optional[str]=None
-#     def generate_qrcode(self):
-#         qr_image = qrcode.make(self.data)
-#         return qr_image.save('qrcode.png')
+@dataclass
+class QRcodeGenerator:
+    data:str
+    image_pa:Optional[str]=None
+    def generate_qrcode(self):
+        qr_image = qrcode.make(self.data)
+        return qr_image.save('qrcode.png')
 
 
 

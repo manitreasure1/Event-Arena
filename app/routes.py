@@ -7,18 +7,17 @@ import asyncio
 from app import bcrypt
 from app.utils import username
 import secrets
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, set_access_cookies ,unset_jwt_cookies
-
+from flask_login import login_user, login_required, current_user, logout_user
 
 @app.route('/', methods=['GET', 'POST'])
 async def home_page():
     date = request.args.get('date')
-    event_date = Event.query.filter_by(date=date).all
-    return render_template('pages/home.html')
+    event_date = Event.query.filter_by(date=date).all # filter out event according to input data by date
+    return render_template('pages/home.html') 
 
 
 @app.route('/event', methods=['GET', 'POST'])
-@jwt_required()
+@login_required
 async def event_page():
     data = Event.query.all()
     await asyncio.sleep(1)
@@ -49,9 +48,9 @@ def signUp():
         db.session.add(user)
         db.session.commit()
         flash("Account created Successfully", category="success")
-        return redirect(url_for("event_page"))
+        return redirect(url_for("login"))
     else:
-        print(form.errors)
+        flash(form.errors, "info")
     return render_template('includes/signUp.html', form=form)
 
 
@@ -61,24 +60,20 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email= form.email.data).first()
         password =  bcrypt.check_password_hash(user.password, form.password.data)
-        access_token = create_access_token(identity=user.username)
         if not user:
             flash("Invalid credentials", category="danger")
         elif not password:
             flash("Invalid credentials", category="danger")
         else:
+            login_user(user=user)
             flash("You've Logged in successfully", "success")
-            res = redirect(url_for('event_page'))
-            set_access_cookies(response=res, encoded_access_token=access_token)
-            # print(res.headers)
-            return res
+            return redirect(url_for('event_page'))
     return render_template('includes/login.html', form=form)
 
 
 @app.route('/createevent', methods=['POST', 'GET'])
-@jwt_required(refresh=True)
+@login_required
 def add_event():
-    current_user_id = get_jwt_identity()
     if request.method == 'POST':
         event = request.form.to_dict()
         if not event or 'name' not in event or 'date' not in event:
@@ -93,40 +88,41 @@ def add_event():
             description=event['description'],
             location=event['location'],
             category=event['category'],
-            user=current_user_id
+            user=current_user
         )
         db.session.add(data)
         db.session.commit()
-        return jsonify({'message':'Event added successfully!'}), 201
+        flash('Event added successfully!', "success")
     return render_template('pages/create-event.html')
 
-# Todo
-@jwt_required()
+"""
+--> WILL BE IMPLEMNETED LATER <--
 @app.route('/event/<int:id>', methods=['PUT'])
+@login_required
 def update_event(id):
     event = request.get_json()
     existing_event = Event.query.get(id)
     if not existing_event:
-        return jsonify({'message':'Event not found!'}), 404
+        flash('Event not found!', "info")
     
     if not event or 'name' not in event or 'date' not in event:
-        return jsonify({'message': 'Invalid input!'}), 400
+        flash('Invalid input!', "danger")
     try:
         event_date = datetime.strptime( event['date'], '%Y-%m-%dT%H:%M:%S')
     except ValueError as e:
-        return jsonify({'message': f'Invalid date format! {e}'}), 400
+        flash( f'Invalid date format! {e}', "info")
     existing_event.name = event['name']
     existing_event.date = event_date,
     existing_event.description = event['description'],
     existing_event.location = event['location'],
     existing_event.category = event['catergory']
     db.session.commit()
-    return jsonify({'message': 'Event updated successfully!'}), 200
+    return jsonify('Event updated successfully!', "success")
+"""
 
 
-# todo
-@jwt_required
 @app.route('/event/<int:id>', methods=['DELETE'])
+@login_required()
 def remove_event(id):
     event = Event.query.get(id)
     if not event:
@@ -136,10 +132,10 @@ def remove_event(id):
     return jsonify({'message': 'Event deleted successfully!'}), 200
 
 
-#todo
+@login_required()
 @app.route("/logout")
 def logout_page():
-    unset_jwt_cookies()
+    logout_user()
     return redirect(url_for('login'))
 
 
@@ -148,15 +144,16 @@ def admin_page_login():
     form = Admin()
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
+        #Todo: check if admin or user or organization
         if user and  user.password == form.password.data:
             return redirect(url_for('admin.html'))
         else:
             flash('You are not qualified or incorrect credentials.')
     return render_template('pages/adminlog.html', form=form)
 
-
 # Todo 
 @app.route("/logout")
+@login_required()
 def admin_logout_page():
-    unset_jwt_cookies()
+    logout_user()
     return redirect(url_for('admin_page_login'))

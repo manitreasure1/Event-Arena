@@ -1,0 +1,9 @@
+{%with messages = get_flashed_messages(with_categories=True)%}
+    {%if messages%}
+    <ul class="flashed_messages">
+        {% for category, message in massages%}
+            <li class={{category}}>{{message}}</li>
+        {%endfor%}
+    </ul>
+    {%endif%}
+{%endwith%}

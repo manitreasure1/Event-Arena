@@ -1,13 +1,16 @@
-from app import db
-from flask_security.core import UserMixin, RoleMixin
+from app import db, login_manager
+from flask_login import UserMixin
 from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
-from sqlalchemy import String, Integer, DateTime, ForeignKey
+from sqlalchemy import String, Integer, DateTime, ForeignKey, Boolean
 from datetime import datetime   
-from typing import Any, Optional, List
+from typing import  Optional, List
+
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(id)
 
 
-
-class Role(db.Model, RoleMixin):
+class Role(db.Model):
     __tablename__='role_table'
 
     role_id:Mapped[int] = mapped_column(Integer, primary_key=True, unique=True, autoincrement=True)
@@ -29,8 +32,7 @@ class User(db.Model, UserMixin):
     user_role_id: Mapped[int] = mapped_column(ForeignKey('role_table.role_id'))  
     role:Mapped['Role'] = relationship('Role', back_populates='users')
     fs_uniquifier: Mapped[str] = mapped_column(String, unique=True, nullable=False)
-    
-    
+     
 
 
     @validates('email')
@@ -67,8 +69,6 @@ class Event(db.Model):
     def validate_date(self, key, date):
         if date > datetime.now():
             raise ValueError("Event date must be in the future.")
-        elif not  datetime.strptime(date, '%Y-%m-%dT%H:%M'):
-            raise ValueError('date must include Year, Month, Day, Hour, Minute')
         return date
 
 
