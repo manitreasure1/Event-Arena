@@ -1,4 +1,5 @@
-from app import app, db
+from app.extentions import  db
+from app import app
 from app.database import Event, User, Visitor, Role
 from flask import  render_template, request, jsonify, redirect, url_for, flash
 from  datetime import datetime
@@ -8,6 +9,7 @@ from app import bcrypt
 from app.utils import username
 import secrets
 from flask_login import login_user, login_required, current_user, logout_user
+
 
 @app.route('/', methods=['GET', 'POST'])
 async def home_page():
@@ -58,13 +60,13 @@ def signUp():
 def login():
     form = Login()
     if form.validate_on_submit():
-        user = User.query.filter_by(email= form.email.data).first()
-        password =  bcrypt.check_password_hash(user.password, form.password.data)
+        user = User.query.filter_by(email= form.email.data).one_or_none()
         if not user:
             flash("Invalid credentials", category="danger")
         elif not password:
             flash("Invalid credentials", category="danger")
         else:
+            password =  bcrypt.check_password_hash(user.password, form.password.data)
             login_user(user=user)
             flash("You've Logged in successfully", "success")
             return redirect(url_for('event_page'))
@@ -122,7 +124,7 @@ def update_event(id):
 
 
 @app.route('/event/<int:id>', methods=['DELETE'])
-@login_required()
+@login_required
 def remove_event(id):
     event = Event.query.get(id)
     if not event:
@@ -132,7 +134,7 @@ def remove_event(id):
     return jsonify({'message': 'Event deleted successfully!'}), 200
 
 
-@login_required()
+@login_required
 @app.route("/logout")
 def logout_page():
     logout_user()
@@ -153,7 +155,7 @@ def admin_page_login():
 
 # Todo 
 @app.route("/logout")
-@login_required()
+@login_required
 def admin_logout_page():
     logout_user()
     return redirect(url_for('admin_page_login'))

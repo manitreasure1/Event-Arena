@@ -28,7 +28,6 @@ def get_user_role(role:Role) -> str:
 #         2: {'name': 'user', 'description': 'Regular user with limited access'},
 #         3: {'name': 'organization', 'description': 'Organization-level access'},
 #     }
-
 #     for role_id, role_data in initial_roles.items():
 #         role = Role(role_id=role_id, name=role_data['name'], description=role_data['description'])
 #         db.session.add(role)

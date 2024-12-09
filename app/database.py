@@ -1,7 +1,7 @@
-from app import db, login_manager
+from app.extentions import db, login_manager
 from flask_login import UserMixin
 from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
-from sqlalchemy import String, Integer, DateTime, ForeignKey, Boolean
+from sqlalchemy import String, Integer, DateTime, ForeignKey
 from datetime import datetime   
 from typing import  Optional, List
 
@@ -67,7 +67,7 @@ class Event(db.Model):
 
     @validates('date')
     def validate_date(self, key, date):
-        if date > datetime.now():
+        if date < datetime.now():
             raise ValueError("Event date must be in the future.")
         return date
 
@@ -76,7 +76,7 @@ class Visitor(db.Model):
     __tablename__ = 'visitor'
 
     id:Mapped[int] = mapped_column(Integer, primary_key=True, unique=True)
-    user_email:Mapped[str]
+    user_email:Mapped[str] 
     phone:Mapped[str] = mapped_column(String, nullable=False)
     event_id:Mapped[int] = mapped_column(ForeignKey('event.id'))
 
