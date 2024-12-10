@@ -56,6 +56,7 @@ def signUp():
     return render_template('includes/signUp.html', form=form)
 
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     form = Login()
