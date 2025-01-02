@@ -6,7 +6,7 @@ from  datetime import datetime
 from app.forms import SignUp, Login, Admin
 import asyncio
 from app import bcrypt
-from app.utils import username
+from app.utils import username, send_email
 import secrets
 from flask_login import login_user, login_required, current_user, logout_user
 
@@ -47,6 +47,13 @@ def signUp():
             role=role,
             fs_uniquifier = secrets.token_urlsafe(32)
         )
+        
+        #verify_email = send_email by verification code
+        verify_email = send_email(
+            username=form.email.data, verification_token=user.fs_uniquifier, reciever_email=form.email.data
+        )
+        
+
         db.session.add(user)
         db.session.commit()
         flash("Account created Successfully", category="success")

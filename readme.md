@@ -20,11 +20,11 @@ Treas View is a web application designed to help users manage and view events. T
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/manitreasure1/treas-view.git
+    git clone https://github.com/manitreasure1/Event-Arena.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd treas-view
+    cd Event-Arena
     ```
 3. Create a virtual environment:
     ```bash
