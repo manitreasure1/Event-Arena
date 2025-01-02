@@ -64,10 +64,10 @@ def login():
         user = User.query.filter_by(email= form.email.data).one_or_none()
         if not user:
             flash("Invalid credentials", category="danger")
-        elif not password:
+        elif not user.password:
             flash("Invalid credentials", category="danger")
         else:
-            password =  bcrypt.check_password_hash(user.password, form.password.data)
+            bcrypt.check_password_hash(user.password, form.password.data)
             login_user(user=user)
             flash("You've Logged in successfully", "success")
             return redirect(url_for('event_page'))
